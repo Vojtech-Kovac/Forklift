@@ -4,15 +4,22 @@ function right () {
 function left () {
     wuKong.setAllMotor(-15, 0)
 }
+input.onButtonPressed(Button.A, function () {
+    PlanetX_AILens.learnObject(PlanetX_AILens.learnID.ID1)
+})
+input.onButtonPressed(Button.B, function () {
+    PlanetX_AILens.ClearlearnObject()
+})
 function forward () {
     wuKong.setAllMotor(25, 25)
 }
+PlanetX_AILens.initModule()
+PlanetX_AILens.switchfunc(PlanetX_AILens.FuncList.Things)
 basic.forever(function () {
-    if (pins.digitalReadPin(DigitalPin.P15) == 0 && pins.digitalReadPin(DigitalPin.P14) == 0) {
-        forward()
-    } else if (pins.digitalReadPin(DigitalPin.P15) == 1 && pins.digitalReadPin(DigitalPin.P14) == 0) {
-        right()
-    } else if (pins.digitalReadPin(DigitalPin.P15) == 0 && pins.digitalReadPin(DigitalPin.P14) == 1) {
-        left()
+	
+})
+basic.forever(function () {
+    if (PlanetX_AILens.objectCheck(PlanetX_AILens.learnID.ID1)) {
+        music.playMelody("A A A - - - - - ", 120)
     }
 })
